@@ -1,0 +1,29 @@
+<?php
+
+namespace Adminetic\Blog\View\Components;
+
+use Adminetic\Blog\Services\PostStatistic;
+use Illuminate\View\Component;
+
+class Dashboard extends Component
+{
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\Contracts\View\View|\Closure|string
+     */
+    public function render()
+    {
+        return view('blog::components.dashboard', PostStatistic::dashboard());
+    }
+}

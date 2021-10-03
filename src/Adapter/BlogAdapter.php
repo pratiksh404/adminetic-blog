@@ -20,7 +20,6 @@ class BlogAdapter implements PluginInterface
             [
                 'type' => 'menu',
                 'name' => 'Post',
-                'icon' => 'fa fa-product-hunt',
                 'is_active' => request()->routeIs('post*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -37,7 +36,6 @@ class BlogAdapter implements PluginInterface
             [
                 'type' => 'menu',
                 'name' => 'Template',
-                'icon' => 'fa fa-circle-o-notch',
                 'is_active' => request()->routeIs('template*') ? 'active' : '',
                 'conditions' => [
                     [

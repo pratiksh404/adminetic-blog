@@ -10,6 +10,7 @@ use Adminetic\Blog\Policies\PostPolicy;
 use Illuminate\Support\ServiceProvider;
 use Adminetic\Blog\Models\Admin\Template;
 use Adminetic\Blog\Policies\TemplatePolicy;
+use Adminetic\Blog\View\Components\Dashboard;
 use Adminetic\Blog\Repositories\PostRepository;
 use Adminetic\Blog\Repositories\TemplateRepository;
 use Adminetic\Blog\Contracts\PostRepositoryInterface;
@@ -18,6 +19,7 @@ use Adminetic\Blog\Http\Livewire\Admin\Post\PostStatus;
 use Adminetic\Blog\Contracts\TemplateRepositoryInterface;
 use Adminetic\Blog\Http\Livewire\Admin\Post\PostFeatured;
 use Adminetic\Blog\Http\Livewire\Admin\Post\PostPriority;
+use Adminetic\Blog\Console\Commands\AdmineticBlogInstallCommand;
 use Adminetic\Blog\Console\Commands\AdmineticBlogPermissionCommand;
 
 class BlogServiceProvider extends ServiceProvider
@@ -45,6 +47,8 @@ class BlogServiceProvider extends ServiceProvider
         $this->registerPolicies();
         // Register View Components
         $this->registerLivewireComponents();
+        // Register View Components
+        $this->registerComponents();
     }
 
     /**
@@ -101,6 +105,7 @@ class BlogServiceProvider extends ServiceProvider
     {
         $this->commands([
             AdmineticBlogPermissionCommand::class,
+            AdmineticBlogInstallCommand::class,
         ]);
     }
 
@@ -163,5 +168,17 @@ class BlogServiceProvider extends ServiceProvider
         foreach ($this->policies as $key => $value) {
             Gate::policy($key, $value);
         }
+    }
+
+    /**
+     *
+     *Register View Component
+     *
+     */
+    protected function registerComponents()
+    {
+        $this->loadViewComponentsAs('blog', [
+            Dashboard::class,
+        ]);
     }
 }

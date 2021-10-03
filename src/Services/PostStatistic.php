@@ -2,6 +2,8 @@
 
 namespace Adminetic\Blog\Services;
 
+use Adminetic\Blog\Models\Admin\Post;
+
 class PostStatistic
 {
     public static function dashboard()
