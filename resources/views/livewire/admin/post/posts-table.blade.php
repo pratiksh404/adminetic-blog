@@ -44,6 +44,7 @@
                                             @endisset
                                         </select>
                                     </div>
+                                    <br>
                                     {{-- Filter --}}
                                     <div class="btn-group p-1" role="group">
                                         <button class="btn btn-primary btn-air-primary dropdown-toggle"

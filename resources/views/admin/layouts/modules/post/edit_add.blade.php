@@ -85,7 +85,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            @livewire('admin.category.quick-category', ['model' => 'Category','category_id' =>
+                            @livewire('admin.category.quick-category', ['category_id' =>
                             $post->category_id ?? null])
                         </div>
                     </div>
@@ -111,8 +111,8 @@
                                 )) as $type)
                                 @if (count($type) > 0)
                                 @if (!is_null($type['id']) && !is_null($type['name']))
-                                <option value="{{$type['id']}}"
-                                    {{isset($post->type) ? ($post->type == $type['id'] ? 'selected' : '') : ''}}>
+                                <option value="{{$type['id']}}" {{isset($post->type) ? ($post->type == $type['id'] ?
+                                    'selected' : '') : ''}}>
                                     {{$type['name']}}</option>
                                 @endif
                                 @endif
@@ -180,16 +180,16 @@
                             <div class="input-group">
                                 <select name="status" id="status" class="select2 form-control">
                                     <option selected disabled>Select Status ..</option>
-                                    <option value="1"
-                                        {{ isset($post) ? ($post->status == 'Draft' ? 'selected' : '') : '' }}>
+                                    <option value="1" {{ isset($post) ? ($post->status == 'Draft' ? 'selected' : '') :
+                                        '' }}>
                                         Draft
                                     </option>
-                                    <option value="2"
-                                        {{ isset($post) ? ($post->status == 'Pending' ? 'selected' : '') : 'selected' }}>
+                                    <option value="2" {{ isset($post) ? ($post->status == 'Pending' ? 'selected' : '') :
+                                        'selected' }}>
                                         Pending</option>
                                     @hasRole('admin|moderator')
-                                    <option value="3"
-                                        {{ isset($post) ? ($post->status == 'Published' ? 'selected' : '') : '' }}>
+                                    <option value="3" {{ isset($post) ? ($post->status == 'Published' ? 'selected' : '')
+                                        : '' }}>
                                         Published</option>
                                     @endhasRole
                                 </select>
@@ -202,27 +202,24 @@
                             <label>Featured ?</label> <br>
                             <label class="switch">
                                 <input type="hidden" name="featured" value="0">
-                                <input type="checkbox" value="1"
-                                    {{ isset($post->featured) ? ($post->featured ? 'checked' : '') : '' }}><span
-                                    class="switch-state"></span>
+                                <input type="checkbox" value="1" {{ isset($post->featured) ? ($post->featured ?
+                                'checked' : '') : '' }}><span class="switch-state"></span>
                             </label>
                         </div>
                         <div class="col-lg-6">
                             <label>Breaking News ?</label> <br>
                             <label class="switch">
                                 <input type="hidden" name="breaking_news" value="0">
-                                <input type="checkbox" value="1"
-                                    {{ isset($post->breaking_news) ? ($post->breaking_news ? 'checked' : '') : '' }}><span
-                                    class="switch-state"></span>
+                                <input type="checkbox" value="1" {{ isset($post->breaking_news) ? ($post->breaking_news
+                                ? 'checked' : '') : '' }}><span class="switch-state"></span>
                             </label>
                         </div>
                         <div class="col-lg-6">
                             <label>Hot News ?</label> <br>
                             <label class="switch">
                                 <input type="hidden" name="hot_news" value="0">
-                                <input type="checkbox" value="1"
-                                    {{ isset($post->hot_news) ? ($post->hot_news ? 'checked' : '') : '' }}><span
-                                    class="switch-state"></span>
+                                <input type="checkbox" value="1" {{ isset($post->hot_news) ? ($post->hot_news ?
+                                'checked' : '') : '' }}><span class="switch-state"></span>
                             </label>
                         </div>
                     </div>

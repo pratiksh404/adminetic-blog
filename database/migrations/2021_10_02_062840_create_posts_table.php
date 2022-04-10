@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('slug')->unique();
             $table->string('code')->unique();
             $table->unsignedBigInteger('author_id');
+            $table->unsignedBigInteger('main_category_id');
             $table->unsignedBigInteger('category_id');
             $table->string('name');
             $table->text('excerpt');
@@ -35,6 +36,9 @@ class CreatePostsTable extends Migration
             $table->text('meta_description')->nullable();
             $table->json('meta_keywords')->nullable();
             $table->timestamps();
+
+            // Foreign
+            $table->foreign('main_category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

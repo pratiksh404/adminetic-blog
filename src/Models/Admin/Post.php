@@ -5,9 +5,10 @@ namespace Adminetic\Blog\Models\Admin;
 use App\Models\User;
 use Conner\Tagging\Taggable;
 use Adminetic\Blog\Traits\PostTrait;
-use Adminetic\Category\Models\Admin\Category;
 use Illuminate\Support\Facades\Cache;
+use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
+use Adminetic\Blog\Models\Admin\Category;
 use Adminetic\Category\Traits\HasCategory;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -17,7 +18,7 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 class Post extends Model implements Viewable
 {
-    use LogsActivity, PostTrait, Sluggable, SluggableScopeHelpers, Taggable, InteractsWithViews;
+    use LogsActivity, PostTrait, Sluggable, SluggableScopeHelpers, Taggable, InteractsWithViews, Thumbnail;
 
     protected $guarded = [];
 
@@ -43,6 +44,11 @@ class Post extends Model implements Viewable
 
     // Logs
     protected static $logName = 'post';
+
+    // Casts
+    protected $casts = [
+        'meta_keywords' => 'array'
+    ];
 
     /**
      * Return the sluggable configuration array for this model.
@@ -77,6 +83,10 @@ class Post extends Model implements Viewable
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+    public function mainCategory()
+    {
+        return $this->belongsTo(Category::class, 'main_category_id');
     }
 
     // Helper Function
